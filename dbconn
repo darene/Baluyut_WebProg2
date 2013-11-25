@@ -1,0 +1,20 @@
+<?php
+		echo "<center>";
+		$r = "view.php";
+		echo "<a href = ".$r."><button>View</button>"."</a>";
+$name = $_POST['name'];
+$email = $_POST['email'];
+$message = $_POST['message'];
+
+$con = mysql_connect('localhost', 'root');
+
+
+if($con){
+	mysql_select_db('activity');
+	$query = "INSERT INTO message(name,email,message,date_posted,is_approved) Values('$name','$email', '$message',CURRENT_DATE,'N')";
+	$result  = mysql_query($query);
+	if($result){
+		echo "Successfully added";
+	}
+}
+?>
